@@ -24,14 +24,30 @@
                 </a>
             </li>
 
-            <li class="menu-title">Navigation</li>
+            <?php if($_SESSION['nama_peran'] == "Administrator") { ?>
+
+            <li class="menu-title">Master Data</li>
 
             <li>
-                <a href="typography.html">
-                    <i class="mdi mdi-format-font"></i>
-                    <span> Typography </span>
+                <a href="<?php echo BASE_URL ?>data-mahasiswa">
+                    <i class="mdi mdi-account-group"></i>
+                    <span> Mahasiswa </span>
                 </a>
             </li>
+            <li>
+                <a href="<?php echo BASE_URL ?>data-dosen">
+                    <i class="mdi mdi-account-multiple"></i>
+                    <span> Dosen </span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo BASE_URL ?>data-mata-kuliah">
+                    <i class="mdi mdi-calendar-text-outline"></i>
+                    <span> Mata Kuliah </span>
+                </a>
+            </li>
+
+            <?php } ?>
         </ul>
 
     </div>
