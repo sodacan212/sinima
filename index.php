@@ -1,7 +1,10 @@
 <?php
+    //Set Hak Akses
+    $auth = ['Administrator','Dosen','Mahasiswa'];
+
     //Memanggil variabel global dan cek auth
-    include 'setting/global.php';
-    include 'setting/auth.php';
+    require 'setting/global.php';
+    require 'setting/auth.php';
 
     //Definisi judul halaman
     $judul_halaman = 'dashboard';

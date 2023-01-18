@@ -1,7 +1,7 @@
 <?php
     ///Memanggil variabel global dan cek auth
-    include '../setting/global.php';
-    include '../setting/auth.php';
+    require '../setting/global.php';
+    require '../setting/auth.php';
 
     //Simpan username user
 	$username = $_SESSION['username'];
