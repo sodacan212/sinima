@@ -12,8 +12,8 @@
     if(!empty($_GET['aksi'] == 'login'))
     {
         //Definisi username & password
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $username = strip_tags($_POST['username']);
+        $password = strip_tags($_POST['password']);
 
         //Mencari data mahasiswa
         $hasil = $proses->proses_login($username,$password);

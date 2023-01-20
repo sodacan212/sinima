@@ -16,7 +16,7 @@
             //Sql pencarian user login
             $sql = $this->db->prepare('SELECT user.id, username, user.nama, nomer_induk, peran.nama as nama_peran, status FROM user INNER JOIN peran ON peran.id = user.peran_id WHERE username=? AND password=?');
 
-            //Set variabel username dan password md5
+            //Eksekusi dengan set variabel username dan password md5
             $sql->execute(array($username,md5($password)));
 
             //Jika ditemukan data
@@ -65,6 +65,45 @@
             $sql->execute(array($id));
             //Mengirim hasil tampil data single
             return $sql->fetch();
+        }
+
+        //Function tambah data
+        function tambah_data($tabel,$data)
+        {
+            //Definisi nama kolom dan values
+            $kolom = array_keys($data);
+            $value = array_values($data);
+
+            //Definisi tempat value
+            $tempat_value = "?";
+            for ($i=1; $i < count($data); $i++) { 
+                $tempat_value .= ",?";
+            }
+            
+            //Sql tambah data
+            $sql = $this->db->prepare("INSERT INTO $tabel (" . implode(", ", $kolom) . ") VALUES (" . $tempat_value . ")");
+            
+            //Eksekusi dengan set variabel array input
+            return $sql->execute($value);
+        }
+
+        //Function ubah data
+        function ubah_data($tabel,$data,$where,$id)
+        {
+            //Definisi nama kolom dan values
+            $values = array_values($data);
+            $values[] = $id;
+            $kolom = array();
+            foreach ($data as $key => $value)
+            {
+                $kolom[] = $key . " = ?";
+            }
+
+            //Sql ubah data
+            $sql = $this->db->prepare("UPDATE $tabel SET ".implode(', ', $kolom)." WHERE $where = ?");
+
+            //Eksekusi dengan set variabel array input
+            return $sql->execute($values);
         }
 
         //Function nonaktifkan data

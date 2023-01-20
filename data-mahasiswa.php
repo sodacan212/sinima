@@ -6,16 +6,19 @@
     require 'setting/global.php';
     require 'setting/auth.php';
 
+    //Memanggil objek koneksi dan proses
     require 'setting/koneksi.php';
     require 'setting/proses.php';
 
     //Definisi judul halaman
     $judul_halaman = 'data mahasiswa';
 
+    //Definisi objek koneksi
     $db = new koneksi();
     $koneksi =  $db->panggilDatabase();
     $proses = new proses($koneksi);
 
+    //Hasil tampil data
     $mahasiswa = $proses->tampil_data_where('user','peran_id = 3');
 ?>
 
@@ -49,6 +52,9 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card-box">
+                                    <div class="float-right">
+                                        <a href="<?php echo BASE_URL ?>tambah-mahasiswa" class="btn btn-info">Tambah</a>
+                                    </div>
                                     <h4 class="mt-0 header-title">Mahasiswa</h4>
                                     <p class="text-muted font-14 mb-3">
                                         Data mahasiswa yang telah tersimpan.
@@ -74,13 +80,13 @@
                                                         <td><?php echo $mahasiswa[$i]['nama'] ?></td>
                                                         <td><?php echo $mahasiswa[$i]['username'] ?></td>
                                                         <td><?php echo $mahasiswa[$i]['status'] == 'Y'? 'Aktif' : 'Nonaktif' ?></td>
-                                                        <td style="text-align: center;">
+                                                        <td>
                                                             <div class="btn-group">
-                                                                <button onclick="location.href='<?php echo BASE_URL ?>edit-mahasiswa?id=<?php echo $mahasiswa[$i]['id'] ?>'" class="btn btn-icon waves-effect waves-light btn-warning"> <i class="fa fa-wrench"></i> </button>
+                                                                <a href="<?php echo BASE_URL ?>ubah-mahasiswa?id=<?php echo $mahasiswa[$i]['id'] ?>" class="btn btn-warning">Ubah</a>
                                                                 <?php if ($mahasiswa[$i]['status'] == 'Y') { ?>
-                                                                    <button onclick="location.href='<?php echo BASE_URL ?>kontrol/mahasiswa?aksi=nonaktifkan&id=<?php echo $mahasiswa[$i]['id'] ?>'" class="btn btn-icon waves-effect waves-light btn-danger"> <i class="fas fa-times"></i> </button>
+                                                                    <button onclick="location.href='<?php echo BASE_URL ?>kontrol/mahasiswa?aksi=nonaktifkan&id=<?php echo $mahasiswa[$i]['id'] ?>'" class="btn btn-danger">Nonaktifkan</button>
                                                                 <?php } else { ?>
-                                                                    <button onclick="location.href='<?php echo BASE_URL ?>kontrol/mahasiswa?aksi=aktifkan&id=<?php echo $mahasiswa[$i]['id'] ?>'" class="btn btn-icon waves-effect waves-light btn-danger"> <i class="fas fa-check"></i> </button>
+                                                                    <button onclick="location.href='<?php echo BASE_URL ?>kontrol/mahasiswa?aksi=aktifkan&id=<?php echo $mahasiswa[$i]['id'] ?>'" class="btn btn-success">Aktifkan</button>
                                                                 <?php } ?>
                                                             </div>
                                                         </td>
