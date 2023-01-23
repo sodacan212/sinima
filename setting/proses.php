@@ -127,7 +127,7 @@
         //Function hapus data
         function hapus_data($tabel,$where)
         {
-            //Sql nonaktifkan data
+            //Sql hapus data
             $sql = $this->db->prepare("DELETE FROM $tabel WHERE $where");
             //Kembali & eksekusi sql
             return $sql->execute();

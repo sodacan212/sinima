@@ -221,7 +221,7 @@
                         'matkul_id '	    => $_GET['id'],
                     );
                     
-                    //Melakukan proses ubah mata kuliah
+                    //Melakukan proses ubah nilai mata kuliah
                     $hasil = $proses->ubah_data('mahasiswa_matkul',$data,"id",$_POST['id'][$i]);
                 }
 
