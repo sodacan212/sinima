@@ -7,7 +7,7 @@
     <div class="user-box text-center">
         <img src="<?php echo BASE_URL ?>assets/images/users/avatar.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-lg">
         <div class="dropdown">
-            <p class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block"><?php echo $_SESSION['nama'] ?></p>
+            <p class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block"><?php echo strlen($_SESSION['nama']) > 22 ? substr($_SESSION['nama'], 0, 22) . '...' : $_SESSION['nama']; ?></p>
         </div>
         <p class="text-muted"><?php echo $_SESSION['nama_peran'] ?></p>
     </div>
@@ -40,6 +40,17 @@
                     <span> Dosen </span>
                 </a>
             </li>
+            <li>
+                <a href="<?php echo BASE_URL ?>data-mata-kuliah">
+                    <i class="mdi mdi-calendar-text-outline"></i>
+                    <span> Mata Kuliah </span>
+                </a>
+            </li>
+
+            <?php } elseif($_SESSION['nama_peran'] == "Dosen" || $_SESSION['nama_peran'] == "Mahasiswa") { ?>
+
+            <li class="menu-title">Penilaian</li>
+
             <li>
                 <a href="<?php echo BASE_URL ?>data-mata-kuliah">
                     <i class="mdi mdi-calendar-text-outline"></i>

@@ -1,13 +1,13 @@
 <?php
     //Set Hak Akses
-    $auth = ['Administrator','Dosen'];
+    $auth = ['Administrator'];
 
     //Memanggil variabel global dan cek auth
     require 'setting/global.php';
     require 'setting/auth.php';
 
     //Definisi judul halaman
-    $judul_halaman = 'tambah mahasiswa';
+    $judul_halaman = 'tambah dosen';
 ?>
 
 <!DOCTYPE html>
@@ -40,14 +40,14 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card-box">
-                                    <h4 class="m-t-0 header-title">Form Mahasiswa</h4>
-                                    <p class="text-muted mb-3 font-13">Form untuk tambah data mahasiswa.</p>
+                                    <h4 class="m-t-0 header-title">Form Dosen</h4>
+                                    <p class="text-muted mb-3 font-13">Form untuk tambah data dosen.</p>
 
-                                    <form method="POST" action="<?php echo BASE_URL ?>kontrol/mahasiswa?aksi=tambah">
+                                    <form method="POST" action="<?php echo BASE_URL ?>kontrol/dosen?aksi=tambah">
                                         <div class="form-row">
                                             <div class="form-group col-md-3">
-                                                <label for="inputNIM" class="col-form-label">NIM</label>
-                                                <input type="text" class="form-control" id="inputNIM" name="nomer_induk">
+                                                <label for="inputNIP" class="col-form-label">NIP</label>
+                                                <input type="text" class="form-control" id="inputNIP" name="nomer_induk">
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label for="inputNama" class="col-form-label">Nama</label>

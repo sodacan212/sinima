@@ -1,6 +1,6 @@
 <?php
     //Set hak akses
-    $auth = ['Administrator','Dosen'];
+    $auth = ['Administrator'];
 
     //Memanggil variabel global dan cek auth
     require '../setting/global.php';
@@ -39,7 +39,7 @@
             //Definisi tabel
             $tabel = 'user';
 
-            //Aksi tambah mahasiswa
+            //Aksi tambah dosen
             if(!empty($_GET['aksi'] == 'tambah'))
             {
                 //Definisi data input dalam bentuk array
@@ -48,25 +48,25 @@
                     'nama'		    => strip_tags($_POST['nama']),
                     'username'	    => strip_tags($_POST['username']),
                     'password'		=> md5(strip_tags($_POST['password'])),
-                    'peran_id'		=> 3,
+                    'peran_id'		=> 2,
                 );
                 
-                //Melakukan proses tambah mahasiswa
+                //Melakukan proses tambah dosen
                 $hasil = $proses->tambah_data($tabel,$data);
 
                 //Jika proses gagal
                 if (!$hasil) {
-                    //Menuju halaman data mahasiswa dan menampilkan alert gagal
-                    echo "<script>alert('Gagal menambahkan! Data mahasiswa gagal ditambahkan!');document.location='../data-mahasiswa';</script>";
+                    //Menuju halaman data dosen dan menampilkan alert gagal
+                    echo "<script>alert('Gagal menambahkan! Data dosen gagal ditambahkan!');document.location='../data-dosen';</script>";
                 }
                 //Jika proses berhasil
                 else {
-                    //Menuju halaman data mahasiswa dan menampilkan alert berhasil
-                    echo "<script>alert('Berhasil menambahkan! Data mahasiswa telah ditambahkan!');document.location='../data-mahasiswa';</script>";
+                    //Menuju halaman data dosen dan menampilkan alert berhasil
+                    echo "<script>alert('Berhasil menambahkan! Data dosen telah ditambahkan!');document.location='../data-dosen';</script>";
                 }
             }
 
-            //Aksi ubah mahasiswa
+            //Aksi ubah dosen
             elseif(!empty($_GET['aksi'] == 'ubah'))
             {
                 //Definisi data input dalam bentuk array
@@ -81,81 +81,81 @@
                     $data['password'] = md5(strip_tags($_POST['password']));
                 }
                 
-                //Melakukan proses ubah mahasiswa
+                //Melakukan proses ubah dosen
                 $hasil = $proses->ubah_data($tabel,$data,"id",strip_tags($_GET['id']));
 
                 //Jika proses gagal
                 if (!$hasil) {
-                    //Menuju halaman data mahasiswa dan menampilkan alert gagal
-                    echo "<script>alert('Gagal mengubah! Data mahasiswa gagal diubah!');document.location='../data-mahasiswa';</script>";
+                    //Menuju halaman data dosen dan menampilkan alert gagal
+                    echo "<script>alert('Gagal mengubah! Data dosen gagal diubah!');document.location='../data-dosen';</script>";
                 }
                 //Jika proses berhasil
                 else {
-                    //Menuju halaman data mahasiswa dan menampilkan alert berhasil
-                    echo "<script>alert('Berhasil mengubah! Data mahasiswa telah diubah!');document.location='../data-mahasiswa';</script>";
+                    //Menuju halaman data dosen dan menampilkan alert berhasil
+                    echo "<script>alert('Berhasil mengubah! Data dosen telah diubah!');document.location='../data-dosen';</script>";
                 }
             }
 
-            //Aksi nonaktifkan mahasiswa
+            //Aksi nonaktifkan dosen
             elseif(!empty($_GET['aksi'] == 'nonaktifkan'))
             {
-                //Definisi id data mahasiswa
+                //Definisi id data dosen
                 $id = $_GET['id'];
 
-                //Mencari data mahasiswa
-                $mahasiswa = $proses->tampil_data_where($tabel,'peran_id = 3 AND id = ' . $id);
+                //Mencari data dosen
+                $dosen = $proses->tampil_data_where($tabel,'peran_id = 2 AND id = ' . $id);
 
-                //Jika data mahasiswa tidak ditemukan
-                if (!$mahasiswa) {
-                    //Menuju halaman data mahasiswa dan menampilkan alert gagal
-                    echo "<script>alert('Gagal menonaktifkan! Data mahasiswa tidak ditemukan!');document.location='../data-mahasiswa';</script>";
+                //Jika data dosen tidak ditemukan
+                if (!$dosen) {
+                    //Menuju halaman data dosen dan menampilkan alert gagal
+                    echo "<script>alert('Gagal menonaktifkan! Data dosen tidak ditemukan!');document.location='../data-dosen';</script>";
                 }
-                //Jika data mahasiswa ditemukan
+                //Jika data dosen ditemukan
                 else {
-                    //Melakukan proses nonaktifkan mahasiswa
+                    //Melakukan proses nonaktifkan dosen
                     $hasil = $proses->nonaktifkan_data($tabel,'id',$id);
 
                     //Jika proses gagal
                     if (!$hasil) {
-                        //Menuju halaman data mahasiswa dan menampilkan alert gagal
-                        echo "<script>alert('Gagal menonaktifkan! Data mahasiswa gagal dinonaktifkan!');document.location='../data-mahasiswa';</script>";
+                        //Menuju halaman data dosen dan menampilkan alert gagal
+                        echo "<script>alert('Gagal menonaktifkan! Data dosen gagal dinonaktifkan!');document.location='../data-dosen';</script>";
                     }
                     //Jika proses berhasil
                     else {
-                        //Menuju halaman data mahasiswa dan menampilkan alert berhasil
-                        echo "<script>alert('Berhasil menonaktifkan! Data mahasiswa telah dinonaktifkan!');document.location='../data-mahasiswa';</script>";
+                        //Menuju halaman data dosen dan menampilkan alert berhasil
+                        echo "<script>alert('Berhasil menonaktifkan! Data dosen telah dinonaktifkan!');document.location='../data-dosen';</script>";
                     }
                 }
             }
             
-            //Aksi aktifkan mahasiswa
+            //Aksi aktifkan dosen
             elseif(!empty($_GET['aksi'] == 'aktifkan'))
             {
-                //Definisi id data mahasiswa
+                //Definisi id data dosen
                 $id = $_GET['id'];
 
-                //Mencari data mahasiswa
-                $mahasiswa = $proses->tampil_data_where($tabel,'peran_id = 3 AND id = ' . $id);
+                //Mencari data dosen
+                $dosen = $proses->tampil_data_where($tabel,'peran_id = 2 AND id = ' . $id);
 
-                //Jika data mahasiswa tidak ditemukan
-                if (!$mahasiswa) {
-                    //Menuju halaman data mahasiswa dan menampilkan alert gagal
-                    echo "<script>alert('Gagal mengaktifkan! Data mahasiswa tidak ditemukan!');document.location='../data-mahasiswa';</script>";
+                //Jika data dosen tidak ditemukan
+                if (!$dosen) {
+                    //Menuju halaman data dosen dan menampilkan alert gagal
+                    echo "<script>alert('Gagal mengaktifkan! Data dosen tidak ditemukan!');document.location='../data-dosen';</script>";
                 }
-                //Jika data mahasiswa ditemukan
+                //Jika data dosen ditemukan
                 else {
-                    //Melakukan proses aktifkan mahasiswa
+                    //Melakukan proses aktifkan dosen
                     $hasil = $proses->aktifkan_data($tabel,'id',$id);
 
                     //Jika proses gagal
                     if (!$hasil)     {
-                        //Menuju halaman data mahasiswa dan menampilkan alert gagal
-                        echo "<script>alert('Gagal mengaktifkan! Data mahasiswa gagal diaktifkan!');document.location='../data-mahasiswa';</script>";
+                        //Menuju halaman data dosen dan menampilkan alert gagal
+                        echo "<script>alert('Gagal mengaktifkan! Data dosen gagal diaktifkan!');document.location='../data-dosen';</script>";
                     }
                     //Jika proses berhasil
                     else {
-                        //Menuju halaman data mahasiswa dan menampilkan alert berhasil
-                        echo "<script>alert('Berhasil mengaktifkan! Data mahasiswa telah diaktifkan!');document.location='../data-mahasiswa';</script>";
+                        //Menuju halaman data dosen dan menampilkan alert berhasil
+                        echo "<script>alert('Berhasil mengaktifkan! Data dosen telah diaktifkan!');document.location='../data-dosen';</script>";
                     }
                 }
             }

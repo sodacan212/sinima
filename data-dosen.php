@@ -1,6 +1,6 @@
 <?php
     //Set Hak Akses
-    $auth = ['Administrator','Dosen'];
+    $auth = ['Administrator'];
 
     //Memanggil variabel global dan cek auth
     require 'setting/global.php';
@@ -11,7 +11,7 @@
     require 'setting/proses.php';
 
     //Definisi judul halaman
-    $judul_halaman = 'data mahasiswa';
+    $judul_halaman = 'data dosen';
 
     //Definisi objek koneksi
     $db = new koneksi();
@@ -19,7 +19,7 @@
     $proses = new proses($koneksi);
 
     //Hasil tampil data
-    $mahasiswa = $proses->tampil_data_where('user','peran_id = 3');
+    $dosen = $proses->tampil_data_where('user','peran_id = 2');
 ?>
 
 <!DOCTYPE html>
@@ -53,11 +53,11 @@
                             <div class="col-lg-12">
                                 <div class="card-box">
                                     <div class="float-right">
-                                        <a href="<?php echo BASE_URL ?>tambah-mahasiswa" class="btn btn-info">Tambah</a>
+                                        <a href="<?php echo BASE_URL ?>tambah-dosen" class="btn btn-info">Tambah</a>
                                     </div>
-                                    <h4 class="mt-0 header-title">Mahasiswa</h4>
+                                    <h4 class="mt-0 header-title">Dosen</h4>
                                     <p class="text-muted font-14 mb-3">
-                                        Data mahasiswa yang telah tersimpan.
+                                        Data dosen yang telah tersimpan.
                                     </p>
 
                                     <div class="table-responsive">
@@ -65,7 +65,7 @@
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th width="1%">#</th>
-                                                    <th>NIM</th>
+                                                    <th>NIP</th>
                                                     <th>Nama</th>
                                                     <th>Username</th>
                                                     <th>Status</th>
@@ -73,25 +73,25 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php for ($i=0; $i <count($mahasiswa) ; $i++) { ?>
+                                                <?php for ($i=0; $i <count($dosen) ; $i++) { ?>
                                                     <tr>
                                                         <th scope="row"><?php echo $i+1 ?></th>
-                                                        <td><?php echo $mahasiswa[$i]['nomer_induk'] ?></td>
-                                                        <td><?php echo $mahasiswa[$i]['nama'] ?></td>
-                                                        <td><?php echo $mahasiswa[$i]['username'] ?></td>
-                                                        <td><?php echo $mahasiswa[$i]['status'] == 'Y'? 'Aktif' : 'Nonaktif' ?></td>
+                                                        <td><?php echo $dosen[$i]['nomer_induk'] ?></td>
+                                                        <td><?php echo $dosen[$i]['nama'] ?></td>
+                                                        <td><?php echo $dosen[$i]['username'] ?></td>
+                                                        <td><?php echo $dosen[$i]['status'] == 'Y'? 'Aktif' : 'Nonaktif' ?></td>
                                                         <td>
                                                             <div class="btn-group">
-                                                                <a href="<?php echo BASE_URL ?>ubah-mahasiswa?id=<?php echo $mahasiswa[$i]['id'] ?>" class="btn btn-warning">Ubah</a>
-                                                                <?php if ($mahasiswa[$i]['status'] == 'Y') { ?>
-                                                                    <button onclick="location.href='<?php echo BASE_URL ?>kontrol/mahasiswa?aksi=nonaktifkan&id=<?php echo $mahasiswa[$i]['id'] ?>'" class="btn btn-danger">Nonaktifkan</button>
+                                                                <a href="<?php echo BASE_URL ?>ubah-dosen?id=<?php echo $dosen[$i]['id'] ?>" class="btn btn-warning">Ubah</a>
+                                                                <?php if ($dosen[$i]['status'] == 'Y') { ?>
+                                                                    <button onclick="location.href='<?php echo BASE_URL ?>kontrol/dosen?aksi=nonaktifkan&id=<?php echo $dosen[$i]['id'] ?>'" class="btn btn-danger">Nonaktifkan</button>
                                                                 <?php } else { ?>
-                                                                    <button onclick="location.href='<?php echo BASE_URL ?>kontrol/mahasiswa?aksi=aktifkan&id=<?php echo $mahasiswa[$i]['id'] ?>'" class="btn btn-success">Aktifkan</button>
+                                                                    <button onclick="location.href='<?php echo BASE_URL ?>kontrol/dosen?aksi=aktifkan&id=<?php echo $dosen[$i]['id'] ?>'" class="btn btn-success">Aktifkan</button>
                                                                 <?php } ?>
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                <?php } if (!count($mahasiswa)) { ?>
+                                                <?php } if (!count($dosen)) { ?>
                                                     <tr>
                                                         <td colspan="6" style="text-align: center; font-weight: bold;">Belum ada data ditemukan!</td>
                                                     </tr>

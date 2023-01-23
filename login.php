@@ -9,7 +9,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
         <meta charset="utf-8" />
         <title>Login - <?php echo APP_HEADER ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
