@@ -35,10 +35,10 @@
         }
 
         //Function tampil data
-        function tampil_data($tabel)
+        function tampil_data($tabel,$join=null,$select='*')
         {
             //Sql tampil data
-            $sql = $this->db->prepare("SELECT * FROM $tabel");
+            $sql = $this->db->prepare("SELECT $select FROM $tabel $join");
             //Eksekusi sql
             $sql->execute();
             //Mengirim hasil tampil data
@@ -46,10 +46,10 @@
         }
 
         //Function tampil data dengan kondisi
-        function tampil_data_where($tabel,$where)
+        function tampil_data_where($tabel,$where,$join=null,$select='*')
         {
             //Sql tampil data
-            $sql = $this->db->prepare("SELECT * FROM $tabel WHERE $where");
+            $sql = $this->db->prepare("SELECT $select FROM $tabel $join WHERE $where");
             //Eksekusi sql
             $sql->execute();
             //Mengirim hasil tampil data
@@ -122,6 +122,15 @@
             $sql = $this->db->prepare("UPDATE $tabel SET status = 'Y' WHERE $where = ?");
             //Kembali & eksekusi sql
             return $sql->execute(array($id));
+        }
+
+        //Function hapus data
+        function hapus_data($tabel,$where)
+        {
+            //Sql nonaktifkan data
+            $sql = $this->db->prepare("DELETE FROM $tabel WHERE $where");
+            //Kembali & eksekusi sql
+            return $sql->execute();
         }
     }
 ?>
