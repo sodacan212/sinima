@@ -11,7 +11,7 @@
     require 'setting/proses.php';
 
     //Definisi judul halaman
-    $judul_halaman = 'detail mata kuliah';
+    $judul_halaman = 'tambah mahasiswa ke mata kuliah';
 
     //Definisi objek koneksi
     $db = new koneksi();

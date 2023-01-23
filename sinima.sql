@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 18, 2023 at 03:04 AM
+-- Generation Time: Jan 23, 2023 at 05:03 AM
 -- Server version: 8.0.30
 -- PHP Version: 7.4.19
 
@@ -50,8 +50,18 @@ CREATE TABLE `matkul` (
   `hari` varchar(7) NOT NULL,
   `jam_mulai` time NOT NULL,
   `jam_selesai` time NOT NULL,
+  `status` enum('Y','T') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Y',
   `dosen_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `matkul`
+--
+
+INSERT INTO `matkul` (`id`, `nama`, `hari`, `jam_mulai`, `jam_selesai`, `status`, `dosen_id`) VALUES
+(1, 'Pemrograman Web', 'Selasa', '19:00:00', '21:30:00', 'Y', 6),
+(2, 'Pemrograman Web II', 'Jumat', '17:00:00', '22:00:00', 'Y', 5),
+(3, 'E-Commerce', 'Sabtu', '20:00:00', '21:00:00', 'Y', 5);
 
 -- --------------------------------------------------------
 
@@ -81,10 +91,11 @@ INSERT INTO `peran` (`id`, `nama`) VALUES
 
 CREATE TABLE `user` (
   `id` int NOT NULL,
-  `username` varchar(10) NOT NULL,
+  `username` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nama` varchar(50) NOT NULL,
   `nomer_induk` int NOT NULL,
+  `status` enum('Y','T') NOT NULL DEFAULT 'Y',
   `peran_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -92,8 +103,13 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `nama`, `nomer_induk`, `peran_id`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin Sinima', 0, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `nama`, `nomer_induk`, `status`, `peran_id`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin Sinima', 0, 'Y', 1),
+(2, 'sodacan212', '21232f297a57a5a743894a0e4a801fc3', ' A. A. Gede Agung Darma Putra', 210010019, 'Y', 3),
+(3, 'petertheseepdog', '21232f297a57a5a743894a0e4a801fc3', 'Nanda Bayu Pamungkas', 210010124, 'Y', 3),
+(4, 'pauskecetit', '21232f297a57a5a743894a0e4a801fc3', 'Gilbert Galilea Deswanto', 210010102, 'Y', 3),
+(5, 'dobler', '21232f297a57a5a743894a0e4a801fc3', 'Wayan Dobler', 1232332311, 'Y', 2),
+(6, 'semplar', '21232f297a57a5a743894a0e4a801fc3', 'Ketut Semplar', 210010020, 'Y', 2);
 
 --
 -- Indexes for dumped tables
@@ -143,7 +159,7 @@ ALTER TABLE `mahasiswa_matkul`
 -- AUTO_INCREMENT for table `matkul`
 --
 ALTER TABLE `matkul`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `peran`
@@ -155,7 +171,7 @@ ALTER TABLE `peran`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

@@ -1,6 +1,6 @@
 <?php
     //Set hak akses
-    $auth = ['Administrator'];
+    $auth = ['Administrator','Dosen'];
 
     //Memanggil variabel global dan cek auth
     require '../setting/global.php';
@@ -203,6 +203,30 @@
                         echo "<script>alert('Berhasil menghapus! Data mahasiswa telah dihapus dari mata kuliah!');document.location='../tambah-mahasiswa-mata-kuliah?id=" . $_GET['id'] . "';</script>";
                     }
                 }
+            }
+
+            //Aksi penilaian mata kuliah
+            elseif(!empty($_GET['aksi'] == 'penilaian'))
+            {
+                //Perulangan input data penilaian
+                for ($i=0; $i < count($_POST['mahasiswa_id']); $i++) {
+                    //Definisi data input dalam bentuk array
+                    $data = array(
+                        'nilai_tugas'	    => $_POST['nilai_tugas'][$i],
+                        'nilai_keaktifan'	=> $_POST['nilai_keaktifan'][$i],
+                        'nilai_kehadiran'	=> $_POST['nilai_kehadiran'][$i],
+                        'nilai_uts'	        => $_POST['nilai_uts'][$i],
+                        'nilai_uas'	        => $_POST['nilai_uas'][$i],
+                        'mahasiswa_id '	    => $_POST['mahasiswa_id'][$i],
+                        'matkul_id '	    => $_GET['id'],
+                    );
+                    
+                    //Melakukan proses ubah mata kuliah
+                    $hasil = $proses->ubah_data('mahasiswa_matkul',$data,"id",$_POST['id'][$i]);
+                }
+
+                //Menuju halaman data mata kuliah dan menampilkan alert berhasil
+                echo "<script>alert('Berhasil menyimpan! Data penilaian telah berhasil disimpan!');document.location='../data-mata-kuliah';</script>";
             }
 
             //Jika tidak ada aksi

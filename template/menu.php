@@ -47,7 +47,7 @@
                 </a>
             </li>
 
-            <?php } elseif($_SESSION['nama_peran'] == "Dosen" || $_SESSION['nama_peran'] == "Mahasiswa") { ?>
+            <?php } elseif($_SESSION['nama_peran'] == "Dosen") { ?>
 
             <li class="menu-title">Penilaian</li>
 
@@ -55,6 +55,17 @@
                 <a href="<?php echo BASE_URL ?>data-mata-kuliah">
                     <i class="mdi mdi-calendar-text-outline"></i>
                     <span> Mata Kuliah </span>
+                </a>
+            </li>
+
+            <?php } elseif($_SESSION['nama_peran'] == "Mahasiswa") { ?>
+
+            <li class="menu-title">Penilaian</li>
+
+            <li>
+                <a href="<?php echo BASE_URL ?>data-nilai">
+                    <i class="mdi mdi-calendar-text-outline"></i>
+                    <span> Nilai </span>
                 </a>
             </li>
 
